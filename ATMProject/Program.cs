@@ -1,7 +1,7 @@
 ﻿// ATM Project V1
 
 // variables
-string nombreCliente = string.Empty;
+string nombreCliente = "Christopher Portorreal";
 string numeroCuenta = string.Empty;
 
 bool estadoCuentaActiva = false;
@@ -18,8 +18,8 @@ int intentoAcceso = 3;
 Console.WriteLine("********** CAJERO AUTOMATICO DIGITAL **********");
 
 // requiere nombre del usuario
-Console.WriteLine("\nEscriba su nombre completo, por favor.");
-nombreCliente = Console.ReadLine().ToUpper();
+// Console.WriteLine("\nEscriba su nombre completo, por favor.");
+// nombreCliente = Console.ReadLine().ToUpper();
 
 // mensaje para numero de cuenta
 Console.WriteLine("\nIngrese su número de cuenta:");
