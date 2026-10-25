@@ -101,7 +101,7 @@ if (estadoCuentaActiva) // validacion estado de cuenta
                 Console.WriteLine("------------------------------------");
                 break;
                 
-                // deposito a cuenta ***************************************************************************************************
+                // deposito a cuenta ****************************************************************************************************
                 case 2:
                 Console.WriteLine("2. ** Depósito a cuenta. **");
                 Console.WriteLine("- Que monto desea depositar?");
@@ -117,7 +117,7 @@ if (estadoCuentaActiva) // validacion estado de cuenta
                     }
                 break;
 
-                // retiro desde cuenta *************************************************************************************************
+                // retiro desde cuenta **************************************************************************************************
                 case 3:
                 Console.WriteLine("3. *** Retiro. ***");
                 Console.WriteLine("- Que monto desea retirar?");
@@ -146,4 +146,4 @@ else
 // fin loop de opciones
 // agradecimiento y despedida con nombre usuario
 Console.WriteLine($"Gracias por utilizar nuestros servicios {nombreCliente}.");
-Console.WriteLine("\t\nDIGIT-BANK 'Su confianza es nuesto interés'");
+Console.WriteLine("\t\nDIGIT-BANK 'Su seguridad es nuesto interés'");
