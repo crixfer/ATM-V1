@@ -1,0 +1,15 @@
+/home/crixfer/Projects/C#/ATM-V1/ATMProject/bin/Debug/net10.0/ATMProject
+/home/crixfer/Projects/C#/ATM-V1/ATMProject/bin/Debug/net10.0/ATMProject.deps.json
+/home/crixfer/Projects/C#/ATM-V1/ATMProject/bin/Debug/net10.0/ATMProject.runtimeconfig.json
+/home/crixfer/Projects/C#/ATM-V1/ATMProject/bin/Debug/net10.0/ATMProject.dll
+/home/crixfer/Projects/C#/ATM-V1/ATMProject/bin/Debug/net10.0/ATMProject.pdb
+/home/crixfer/Projects/C#/ATM-V1/ATMProject/obj/Debug/net10.0/ATMProject.GeneratedMSBuildEditorConfig.editorconfig
+/home/crixfer/Projects/C#/ATM-V1/ATMProject/obj/Debug/net10.0/ATMProject.AssemblyInfoInputs.cache
+/home/crixfer/Projects/C#/ATM-V1/ATMProject/obj/Debug/net10.0/ATMProject.AssemblyInfo.cs
+/home/crixfer/Projects/C#/ATM-V1/ATMProject/obj/Debug/net10.0/ATMProject.csproj.CoreCompileInputs.cache
+/home/crixfer/Projects/C#/ATM-V1/ATMProject/obj/Debug/net10.0/ATMProject.sourcelink.json
+/home/crixfer/Projects/C#/ATM-V1/ATMProject/obj/Debug/net10.0/ATMProject.dll
+/home/crixfer/Projects/C#/ATM-V1/ATMProject/obj/Debug/net10.0/refint/ATMProject.dll
+/home/crixfer/Projects/C#/ATM-V1/ATMProject/obj/Debug/net10.0/ATMProject.pdb
+/home/crixfer/Projects/C#/ATM-V1/ATMProject/obj/Debug/net10.0/ATMProject.genruntimeconfig.cache
+/home/crixfer/Projects/C#/ATM-V1/ATMProject/obj/Debug/net10.0/ref/ATMProject.dll
