@@ -19,7 +19,7 @@ Console.WriteLine("********** CAJERO AUTOMATICO DIGITAL **********");
 
 // requiere nombre del usuario
 Console.WriteLine("\nEscriba su nombre completo, por favor.");
-nombreCliente = Console.ReadLine();
+nombreCliente = Console.ReadLine().ToUpper();
 
 // mensaje para numero de cuenta
 Console.WriteLine("\nIngrese su número de cuenta:");
@@ -127,6 +127,10 @@ if (estadoCuentaActiva) // validacion estado de cuenta
                         Console.WriteLine($"Ha retirado: $RD{montoOperacion:N2}"); // muestra total retirado
                         Console.WriteLine($"Su nuevo balance actual es: $RD{saldoDisponible:N2}"); // muestra balance modificado
                     }
+                else if (montoOperacion > saldoDisponible)
+                    {
+                        Console.WriteLine("Fondos insuficientes.");
+                    }
                 else
                     {
                         Console.WriteLine("Debe ingresar un monto mayor a 0."); // mensaje de error
@@ -136,6 +140,10 @@ if (estadoCuentaActiva) // validacion estado de cuenta
             // fin del menu switch
         
     } while (opcionMenu < 4); // si es mayor, tambien saldra
+}
+else if (!estadoCuentaActiva) // valida estado de cuenta
+{
+    Console.WriteLine("Su cuenta está inactiva. Comuníquese con nuestras oficinas para más información.");
 }
 else
 {
