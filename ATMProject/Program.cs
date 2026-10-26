@@ -22,19 +22,20 @@ Console.WriteLine("********** CAJERO AUTOMATICO DIGITAL **********");
 // nombreCliente = Console.ReadLine().ToUpper();
 
 // mensaje para numero de cuenta
-Console.WriteLine("\nIngrese su número de cuenta:");
-Console.WriteLine("\tNúmeros de cuentas de prueba disponibles");
+Console.WriteLine("\nElija un número de cuenta:");
+Console.WriteLine("\nNúmeros de cuentas de prueba disponibles");
 
-Console.WriteLine("1. '123456'"); // numero de cuenta de prueba
+Console.WriteLine("1. '123456'"); // numero de cuenta activa de prueba
+Console.WriteLine("2. '111222'"); // numero de cuenta inactiva de prueba
 
 // muestra el numero ingresado por el usuario
-Console.WriteLine($"\nNumero de cuenta ingresado: {numeroCuenta = Console.ReadLine()}");
+numeroCuenta = Console.ReadLine();
 
 // velidacion de errores
-if (numeroCuenta != "123456")
+if (numeroCuenta != "1")
 {
     // loop para intento de acceso limitado
-    while(intentoAcceso > 0 && numeroCuenta != "123456")
+    while(intentoAcceso > 0 && numeroCuenta != "1")
     {
         Console.WriteLine("** Mensaje: Número de cuenta no disponible. **");
         Console.WriteLine("Intenta nuevamente con tu número de cuenta.");
@@ -48,7 +49,7 @@ if (numeroCuenta != "123456")
 
 }
 
-if (numeroCuenta == "123456") // validacion para acceso a menu
+if (numeroCuenta == "1") // validacion para acceso a menu
     estadoCuentaActiva = true; // cambia a activa
 
 
@@ -95,7 +96,7 @@ if (estadoCuentaActiva) // validacion estado de cuenta
             {   
                 // consulta de saldo disponible ****************************************************************************************
                 case 1:
-                Console.WriteLine("1. * Solicitud de balance disponible. *");
+                Console.WriteLine("\n1. * Solicitud de balance disponible. *");
                 Console.WriteLine("------------------------------------");
                 Console.WriteLine($"- Su balance actual es $RD{saldoDisponible:N2} -"); // mensaje saldo actual
                 Console.WriteLine("------------------------------------");
@@ -103,13 +104,15 @@ if (estadoCuentaActiva) // validacion estado de cuenta
                 
                 // deposito a cuenta ****************************************************************************************************
                 case 2:
-                Console.WriteLine("2. ** Depósito a cuenta. **");
+                Console.WriteLine("\n2. ** Depósito a cuenta. **");
                 Console.WriteLine("- Que monto desea depositar?");
                 if (decimal.TryParse(Console.ReadLine(), out montoOperacion) && montoOperacion > 0) // lee el monto agregado
                     {
                         saldoDisponible += montoOperacion; // suma monto depositado
-                        Console.WriteLine("***** Monto agregado satisfactoriamente *****");
-                        Console.WriteLine($"Su nuevo balance actual es: $RD{saldoDisponible:N2}.");
+                        Console.WriteLine("\n***** Monto agregado satisfactoriamente *****");
+                        Console.WriteLine("------------------------------------");
+                        Console.WriteLine($"Su balance actual es: $RD{saldoDisponible:N2}.");
+                        Console.WriteLine("------------------------------------");
                     }
                 else
                     {
@@ -119,13 +122,15 @@ if (estadoCuentaActiva) // validacion estado de cuenta
 
                 // retiro desde cuenta **************************************************************************************************
                 case 3:
-                Console.WriteLine("3. *** Retiro. ***");
+                Console.WriteLine("\n3. *** Retiro. ***");
                 Console.WriteLine("- Que monto desea retirar?");
-                if (decimal.TryParse(Console.ReadLine(), out montoOperacion) && montoOperacion > 0) // lee el monto retirado
+                if (decimal.TryParse(Console.ReadLine(), out montoOperacion) && montoOperacion <= saldoDisponible && montoOperacion > 0) // lee el monto retirado
                     {
                         saldoDisponible -= montoOperacion; // resta monto retirado
-                        Console.WriteLine($"Ha retirado: $RD{montoOperacion:N2}"); // muestra total retirado
-                        Console.WriteLine($"Su nuevo balance actual es: $RD{saldoDisponible:N2}"); // muestra balance modificado
+                        Console.WriteLine($"\nHa retirado: $RD{montoOperacion:N2}"); // muestra total retirado
+                        Console.WriteLine("------------------------------------");
+                        Console.WriteLine($"Su balance actual es: $RD{saldoDisponible:N2}"); // muestra balance modificado
+                        Console.WriteLine("------------------------------------");
                     }
                 else if (montoOperacion > saldoDisponible)
                     {
@@ -153,5 +158,5 @@ else
 
 // fin loop de opciones
 // agradecimiento y despedida con nombre usuario
-Console.WriteLine($"Gracias por utilizar nuestros servicios {nombreCliente}.");
-Console.WriteLine("\t\nDIGIT-BANK 'Su seguridad es nuesto interés'");
+Console.WriteLine($"\nGracias por utilizar nuestros servicios {nombreCliente}.");
+Console.WriteLine("\t\nDIGIT-BANK 'Su confianza es nuesto interés'");
