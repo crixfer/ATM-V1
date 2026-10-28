@@ -28,7 +28,7 @@ Console.WriteLine("\nNúmeros de cuentas de prueba disponibles");
 Console.WriteLine("1. '123456'"); // numero de cuenta activa de prueba
 Console.WriteLine("2. '111222'"); // numero de cuenta inactiva de prueba
 
-// muestra el numero ingresado por el usuario
+// numero ingresado por el usuario
 numeroCuenta = Console.ReadLine();
 
 // velidacion de errores
@@ -74,7 +74,7 @@ if (estadoCuentaActiva) // validacion estado de cuenta
         // fin menu de opciones
             
             // loop mientras validacion de entrada
-            while (!int.TryParse(Console.ReadLine(), out opcionMenu) && opcionMenu <=0)
+            while (!int.TryParse(Console.ReadLine(), out opcionMenu) || opcionMenu < 1 || opcionMenu > 4)
             {
                 // mensaje de error
                 Console.WriteLine("Mensaje: Debe elegir un número del menú de opciones!");
@@ -144,7 +144,7 @@ if (estadoCuentaActiva) // validacion estado de cuenta
             }
             // fin del menu switch
         
-    } while (opcionMenu < 4); // si es mayor, tambien saldra
+    } while (opcionMenu != 4); // si es mayor, tambien saldra
 }
 else if (!estadoCuentaActiva) // valida estado de cuenta
 {
