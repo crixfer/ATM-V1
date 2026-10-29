@@ -1,6 +1,8 @@
 ﻿// ATM Project V1
 
 // variables
+using System.ComponentModel.DataAnnotations;
+
 string nombreCliente = "Christopher Portorreal";
 string numeroCuenta = string.Empty;
 
@@ -28,6 +30,8 @@ Console.WriteLine("\nNúmeros de cuentas de prueba disponibles");
 Console.WriteLine("1. '123456'"); // numero de cuenta activa de prueba
 Console.WriteLine("2. '111222'"); // numero de cuenta inactiva de prueba
 
+Console.Write("\nOpción: ");
+
 // numero ingresado por el usuario
 numeroCuenta = Console.ReadLine()!;
 
@@ -54,7 +58,7 @@ if (numeroCuenta == "1") // validacion para acceso a menu
 
 // METODOS_____________________________________________________________________________________________
 
-void MostrarMenu() // Funcion para mostrar menu
+void MostrarMenu() // Metodo para mostrar menu
 {
     // menu de opciones
         Console.WriteLine("\t\n********** Menú de opciones **********\n");
@@ -62,26 +66,29 @@ void MostrarMenu() // Funcion para mostrar menu
         Console.WriteLine("1. Consulta de balance disponible.");
         Console.WriteLine("2. Depósito a cuenta.");
         Console.WriteLine("3. Retiro.");
-        Console.WriteLine("4. Salir del menú.");
+        Console.WriteLine("\n4. Salir del menú.");
 
         Console.WriteLine("\t\n**************************************");
+
+        Console.Write("Opción: ");
         // fin menu de opciones
 }
 
-void MostrarBalance() // Funcion para mostrar balance
+void MostrarBalance() // Metodo para mostrar balance
 {
     Console.WriteLine("------------------------------------");
     Console.WriteLine($"- Su balance actual es $RD{saldoDisponible:N2}."); // mensaje saldo actual
     Console.WriteLine("------------------------------------");
 }
 
-decimal Deposito(string mensaje) // Funcion manejo depositos y nuevo balance
+decimal Deposito(string mensaje) // Metodo manejo depositos y nuevo balance
 {
-    Console.Write(mensaje); // mensaje para modificar
+    Console.Write(mensaje); // mensaje para requerir deposito
 
     while (!decimal.TryParse(Console.ReadLine(), out montoOperacion) || montoOperacion <= 0) // validacion monto deposito
     {
         Console.WriteLine("Mensaje: Debe ingresar un monto válido y mayor a 0!");
+        Console.Write(mensaje);
     }
    
     Console.WriteLine("\n***** Monto agregado satisfactoriamente *****");
@@ -94,9 +101,41 @@ decimal Deposito(string mensaje) // Funcion manejo depositos y nuevo balance
     
 }
 
+decimal Retiro(string mensaje) // Metodo Retiro
+{
+    Console.Write(mensaje); // Mensaje para requerir retiro
+
+    while(true)
+    {
+        
+        if (!decimal.TryParse(Console.ReadLine(), out montoOperacion) || montoOperacion <= 0) // lee el monto retirado
+            {
+                Console.WriteLine("\nMensaje!: Debe ingresar un monto válido y mayor a 0.");
+            }
+
+        else if (montoOperacion > saldoDisponible) // validacion fondos suficientes
+            {
+                Console.WriteLine("\nMensaje!: Fondos insuficientes.");
+            }
+            
+        else
+            {
+                break; // si verdadero, sale del bucle
+            }
+            
+            Console.Write(mensaje); // Mensaje para requerir retiro
+    }
+
+
+    saldoDisponible -= montoOperacion; // resta monto retirado
+    Console.WriteLine($"\nHa retirado: $RD{montoOperacion:N2}"); // muestra total retirado
+
+    MostrarBalance(); // Metodo balance
+    return saldoDisponible; // retorna el balance modificado
+    
+}
+
 // FIN METODOS_____________________________________________________________________________________________
-
-
 
 if (estadoCuentaActiva) // validacion estado de cuenta
 {
@@ -124,38 +163,23 @@ if (estadoCuentaActiva) // validacion estado de cuenta
                 // consulta de saldo disponible ****************************************************************************************
                 case 1:
                 Console.WriteLine("\n1. * Solicitud de balance disponible. *");
-                MostrarBalance();
+                MostrarBalance(); // Metodo balance
                 break;
                 
                 // deposito a cuenta ****************************************************************************************************
                 case 2:
                 Console.WriteLine("\n2. ** Depósito a cuenta. **");
-                Deposito("Que monto desea depositar: ");
+                Deposito("\n- Que monto desea depositar: "); // Metodo deposito
                 break;
 
                 // retiro desde cuenta **************************************************************************************************
                 case 3:
                 Console.WriteLine("\n3. *** Retiro. ***");
-                Console.WriteLine("- Que monto desea retirar?");
-                if (decimal.TryParse(Console.ReadLine(), out montoOperacion) && montoOperacion <= saldoDisponible && montoOperacion > 0) // lee el monto retirado
-                    {
-                        saldoDisponible -= montoOperacion; // resta monto retirado
-                        Console.WriteLine($"\nHa retirado: $RD{montoOperacion:N2}"); // muestra total retirado
-                        Console.WriteLine("------------------------------------");
-                        Console.WriteLine($"Su balance actual es: $RD{saldoDisponible:N2}"); // muestra balance modificado
-                        Console.WriteLine("------------------------------------");
-                    }
-                else if (montoOperacion > saldoDisponible)
-                    {
-                        Console.WriteLine("Fondos insuficientes.");
-                    }
-                else
-                    {
-                        Console.WriteLine("Debe ingresar un monto mayor a 0."); // mensaje de error
-                    }
+                Retiro("\n- Que monto desea retirar: "); // Metodo Retiro
                 break;
             }
             // fin del menu switch
+
         
     } while (opcionMenu != 4); // si es mayor, tambien saldra
 }
@@ -171,5 +195,5 @@ else
 
 // fin loop de opciones
 // agradecimiento y despedida con nombre usuario
-Console.WriteLine($"\nGracias por utilizar nuestros servicios {nombreCliente}.");
+Console.WriteLine($"\nGracias por utilizar nuestros servicios Sr. {nombreCliente}.");
 Console.WriteLine("\t\nDIGIT-BANK 'Su confianza es nuesto interés'");
