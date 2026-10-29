@@ -52,6 +52,51 @@ if (numeroCuenta != "1")
 if (numeroCuenta == "1") // validacion para acceso a menu
     estadoCuentaActiva = true; // cambia a activa
 
+// METODOS_____________________________________________________________________________________________
+
+void MostrarMenu() // Funcion para mostrar menu
+{
+    // menu de opciones
+        Console.WriteLine("\t\n********** Menú de opciones **********\n");
+        
+        Console.WriteLine("1. Consulta de balance disponible.");
+        Console.WriteLine("2. Depósito a cuenta.");
+        Console.WriteLine("3. Retiro.");
+        Console.WriteLine("4. Salir del menú.");
+
+        Console.WriteLine("\t\n**************************************");
+        // fin menu de opciones
+}
+
+void MostrarBalance() // Funcion para mostrar balance
+{
+    Console.WriteLine("------------------------------------");
+    Console.WriteLine($"- Su balance actual es $RD{saldoDisponible:N2}."); // mensaje saldo actual
+    Console.WriteLine("------------------------------------");
+}
+
+decimal Deposito(string mensaje) // Funcion manejo depositos y nuevo balance
+{
+    Console.Write(mensaje); // mensaje para modificar
+
+    while (!decimal.TryParse(Console.ReadLine(), out montoOperacion) || montoOperacion <= 0) // validacion monto deposito
+    {
+        Console.WriteLine("Mensaje: Debe ingresar un monto válido y mayor a 0!");
+    }
+   
+    Console.WriteLine("\n***** Monto agregado satisfactoriamente *****");
+
+    saldoDisponible += montoOperacion; // adiciona nuevo monto a balnace actual
+
+    MostrarBalance(); // Funcion mostrar balance modificado
+
+    return saldoDisponible;
+    
+}
+
+// FIN METODOS_____________________________________________________________________________________________
+
+
 
 if (estadoCuentaActiva) // validacion estado de cuenta
 {
@@ -62,16 +107,7 @@ if (estadoCuentaActiva) // validacion estado de cuenta
     // loop de opciones
     do
     {
-        // menu de opciones
-        Console.WriteLine("\t\n********** Menú de opciones **********\n");
-        
-        Console.WriteLine("1. Consulta de balance disponible.");
-        Console.WriteLine("2. Depósito a cuenta.");
-        Console.WriteLine("3. Retiro.");
-        Console.WriteLine("4. Salir del menú.");
-
-        Console.WriteLine("\t\n**************************************");
-        // fin menu de opciones
+        MostrarMenu(); //  MENU
             
             // loop mientras validacion de entrada
             while (!int.TryParse(Console.ReadLine(), out opcionMenu) || opcionMenu < 1 || opcionMenu > 4)
@@ -79,16 +115,7 @@ if (estadoCuentaActiva) // validacion estado de cuenta
                 // mensaje de error
                 Console.WriteLine("Mensaje: Debe elegir un número del menú de opciones!");
                 
-                // menu de opciones
-                Console.WriteLine("\t\n********** Menú de opciones **********\n");
-                
-                Console.WriteLine("1. Consulta de balance disponible.");
-                Console.WriteLine("2. Depósito a cuenta.");
-                Console.WriteLine("3. Retiro.");
-                Console.WriteLine("4. Salir del menú.");
-
-                Console.WriteLine("\t\n**************************************");
-                // fin menu de opciones
+                MostrarMenu(); // MENU
             }
 
             // menu switch
@@ -97,27 +124,13 @@ if (estadoCuentaActiva) // validacion estado de cuenta
                 // consulta de saldo disponible ****************************************************************************************
                 case 1:
                 Console.WriteLine("\n1. * Solicitud de balance disponible. *");
-                Console.WriteLine("------------------------------------");
-                Console.WriteLine($"- Su balance actual es $RD{saldoDisponible:N2} -"); // mensaje saldo actual
-                Console.WriteLine("------------------------------------");
+                MostrarBalance();
                 break;
                 
                 // deposito a cuenta ****************************************************************************************************
                 case 2:
                 Console.WriteLine("\n2. ** Depósito a cuenta. **");
-                Console.WriteLine("- Que monto desea depositar?");
-                if (decimal.TryParse(Console.ReadLine(), out montoOperacion) && montoOperacion > 0) // lee el monto agregado
-                    {
-                        saldoDisponible += montoOperacion; // suma monto depositado
-                        Console.WriteLine("\n***** Monto agregado satisfactoriamente *****");
-                        Console.WriteLine("------------------------------------");
-                        Console.WriteLine($"Su balance actual es: $RD{saldoDisponible:N2}.");
-                        Console.WriteLine("------------------------------------");
-                    }
-                else
-                    {
-                        Console.WriteLine("Mensaje: Debe ingresar un monto mayor a 0!"); //mensaje de error
-                    }
+                Deposito("Que monto desea depositar: ");
                 break;
 
                 // retiro desde cuenta **************************************************************************************************
