@@ -29,7 +29,7 @@ Console.WriteLine("1. '123456'"); // numero de cuenta activa de prueba
 Console.WriteLine("2. '111222'"); // numero de cuenta inactiva de prueba
 
 // numero ingresado por el usuario
-numeroCuenta = Console.ReadLine();
+numeroCuenta = Console.ReadLine()!;
 
 // velidacion de errores
 if (numeroCuenta != "1")
@@ -43,7 +43,7 @@ if (numeroCuenta != "1")
         intentoAcceso -= 1; // resta un intento para el acceso con un maximo de 3
 
         Console.WriteLine($"Intentos disponibles: {intentoAcceso}"); // muestra el numero de intentos disponibles
-        Console.WriteLine($"\nNumero de cuenta ingresado: {numeroCuenta = Console.ReadLine()}\n"); // muestra numero de cuenta ingresado por el usuario
+        Console.WriteLine($"\nNumero de cuenta ingresado: {numeroCuenta = Console.ReadLine()!}\n"); // muestra numero de cuenta ingresado por el usuario
 
     }
 
